@@ -4,6 +4,7 @@ import { generatePrompt, generatePromptDetermine } from "./prompt";
 
 const openai = new OpenAI({
     apiKey: process.env.OPENAI_API_KEY,
+    baseURL: "https://apigateway.avangenio.net",
 });
 
 /**
@@ -15,7 +16,7 @@ const run = async (name: string, history: ChatCompletionMessageParam[]): Promise
 
     const promtp = generatePrompt(name)
     const response = await openai.chat.completions.create({
-        model: "gpt-3.5-turbo",
+        model: "spark",
         messages: [
             {
                 "role": "system",
@@ -36,7 +37,7 @@ const runDetermine = async (history: ChatCompletionMessageParam[]): Promise<stri
 
     const promtp = generatePromptDetermine()
     const response = await openai.chat.completions.create({
-        model: "gpt-3.5-turbo",
+        model: "spark",
         messages: [
             {
                 "role": "system",
